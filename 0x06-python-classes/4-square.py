@@ -5,7 +5,9 @@
 class Square:
     """Class that defines a square"""
 
-    self.size = size
+    def __init(self, size=0):
+        """Instantiation with optional size"""
+        self.size = size
 
     @property
     def size(self):
