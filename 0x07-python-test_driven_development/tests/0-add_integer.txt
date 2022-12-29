@@ -1,0 +1,121 @@
+# Tests for ``add`` from 0-add_integer.py
+
+----------------------------------------
+
+# Import function from module:
+	>>> add_integer = __import__("0-add_integer").add_integer
+
+# Check for module docstring:
+	>>> print(__import__("0-add_integer").__doc__)
+	Defines an addition function
+
+# Check for function docstring:
+	>>> print(__import__("0-add_integer").add_integer.__doc__)
+	Returns the integer addition of a and b
+
+# Section - Expected adding:
+	>>> print(add_integer(.0, .0))
+	0
+	>>> print(add_integer(0, 0))
+	0
+	>>> print(add_integer(7))
+	105
+	>>> print(add_integer(10.0, 15.0))
+	25
+	>>> print(add_integer(5, 20.0))
+	25
+	>>> print(add_integer(-5.5, -5))
+	-10
+	>>> print(add_integer(-2, 8))
+	6
+	>>> print(add_integer(2.3, -3))
+	-1
+
+# Section - SyntaxError:
+	>>> add_integer(*.:, 7)
+	Traceback (most recent call last):
+	SyntaxError: invalid syntax
+
+	>>> add_integer(7, *.:)
+	Traceback (most recent call last):
+	SyntaxError: invalid syntax
+
+	>>> add_integer(., .)
+	Traceback (most recent call last):
+	SyntaxError: invalid syntax
+
+# Section - TypeError:
+	>>> print(add_integer())
+	Traceback (most recent call last):
+	TypeError: add_integer() missing 1 required positional argument: 'a'
+
+	>>> print(add_integer(1, 2, 3))
+        Traceback (most recent call last):
+        TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
+
+	>>> print(add_integer("hello", 3))
+	Traceback (most recent call last):
+	TypeError: a must be an integer
+
+	>>> print(add_integer(None, None))
+	Traceback (most recent call last):
+	TypeError: a must be an integer
+
+	>>> print(add_integer(0, None))
+        Traceback (most recent call last):
+        TypeError: b must be an integer
+
+	>>> print(add_integer(0, "hi"))
+        Traceback (most recent call last):
+        TypeError: b must be an integer
+
+	>>> print(add_integer("1", 0))
+        Traceback (most recent call last):
+        TypeError: a must be an integer
+
+	>>> print(add_integer(8, [1, 2, 3]))
+        Traceback (most recent call last):
+        TypeError: b must be an integer
+
+	>>> print(add_integer(8, (1, 2, 3)))
+        Traceback (most recent call last):
+        TypeError: b must be an integer
+
+	>>> print(add_integer("hello", "world"))
+        Traceback (most recent call last):
+        TypeError: a must be an integer
+
+	>>> print(add_integer(True, 8))
+        Traceback (most recent call last):
+        TypeError: a must be an integer
+
+	>>> print(add_integer(8, True))
+        Traceback (most recent call last):
+        TypeError: b must be an integer
+
+# Section - ValueError:
+	>>> print(add_integer(float("nan")))
+        Traceback (most recent call last):
+        ValueError: cannot convert float NaN to integer
+
+	>>> print(add_integer(3, float("nan")))
+        Traceback (most recent call last):
+        ValueError: cannot convert float NaN to integer
+
+# Section - OverflowError:
+	>>> print(add_integer(float("inf")))
+        Traceback (most recent call last):
+        OverflowError: cannot convert float infinity to integer
+
+	>>> print(add_integer(4, float("inf")))
+        Traceback (most recent call last):
+        OverflowError: cannot convert float infinity to integer
+
+# Section - NameError:
+	>>> print(add_integer(charles))
+        Traceback (most recent call last):
+        NameError: name 'charles' is not defined
+
+	>>> print(add_integer(3, charles))
+        Traceback (most recent call last):
+        NameError: name 'charles' is not defined
