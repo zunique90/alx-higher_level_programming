@@ -6,12 +6,15 @@
 	>>> add_integer = __import__("0-add_integer").add_integer
 
 # Check for module docstring:
-	>>> print(__import__("0-add_integer").__doc__)
-	Defines an addition function
+	>>> m = __import__("0-add_integer").__doc__
+	>>> len(m) >= 1
+	True
 
 # Check for function docstring:
-	>>> print(__import__("0-add_integer").add_integer.__doc__)
-	Returns the integer addition of a and b
+	>>> f = __import__("0-add_integer").add_integer.__doc__
+	>>> len(f) >= 1
+	True
+	
 
 # Section - Expected adding:
 	>>> print(add_integer(.0, .0))

@@ -1,0 +1,99 @@
+Tests for ``say_my_name`` from 3-say_my_name.py
+
+-----------------------------------------------
+
+# Import function from module:
+	>>> say_my_name = __import__("3-say_my_name").say_my_name
+
+# Check for module docstring:
+	>>> m = __import__("3-say_my_name").__doc__
+	>>> len(m) >= 1
+	True
+
+# Check for function docstring:
+	>>> f = __import__("3-say_my_name").say_my_name.__doc__
+	>>> len(f) >= 1
+	True
+
+# Section - TypeError
+	>>> say_my_name()
+        Traceback (most recent call last):
+        TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+
+	>>> say_my_name("Charles", "Izu", "Eze")
+        Traceback (most recent call last):
+        TypeError: say_my_name() takes from 1 to 2 positional arguments but 3 were given
+
+	>>> say_my_name(None, "Eze")
+	Traceback (most recent call last):
+	TypeError: first_name must be a string
+
+	>>> say_my_name(1, "Eze")
+        Traceback (most recent call last):
+        TypeError: first_name must be a string
+
+	>>> say_my_name(1)
+        Traceback (most recent call last):
+        TypeError: first_name must be a string
+
+	>>> say_my_name(None)
+        Traceback (most recent call last):
+        TypeError: first_name must be a string
+
+	>>> say_my_name(["Charles", "Izu"], "Eze")
+        Traceback (most recent call last):
+        TypeError: first_name must be a string
+
+	>>> say_my_name("Charles Izu", None)
+        Traceback (most recent call last):
+        TypeError: last_name must be a string
+
+	>>> say_my_name("Charles Izu", 1)
+        Traceback (most recent call last):
+        TypeError: last_name must be a string
+
+	>>> say_my_name("Charles Izu", ["Chikwe", "Eze"])
+        Traceback (most recent call last):
+        TypeError: last_name must be a string
+
+	>>> say_my_name("Charles" * "Izu")
+        Traceback (most recent call last):
+        TypeError: can't multiply sequence by non-int of type 'str'
+
+# Section - SyntaxError:
+	>>> say_my_name("Charles". "Izu")
+        Traceback (most recent call last):
+        SyntaxError: invalid syntax
+
+	>>> say_my_name("Charles Izu", *)
+        Traceback (most recent call last):
+        SyntaxError: invalid syntax
+
+	>>> say_my_name(*, "Eze")
+        Traceback (most recent call last):
+        SyntaxError: invalid syntax
+
+# Section - NameError
+	>>> say_my_name(Charles)
+	Traceback (most recent call last):
+        NameError: name 'Charles' is not defined
+
+	>>> say_my_name("Charles", Eze)
+        Traceback (most recent call last):
+        NameError: name 'Eze' is not defined
+
+# Section - expected use
+	>>> say_my_name("")
+        My name is  
+
+	>>> say_my_name("Charles")
+        My name is Charles 
+
+	>>> say_my_name("Charles Izu", "Eze")
+        My name is Charles Izu Eze
+
+	>>> say_my_name("Charles", )
+        My name is Charles 
+
+	>>> say_my_name("Charles" "Izu")
+	My name is CharlesIzu 

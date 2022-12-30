@@ -1,9 +1,22 @@
 #!/usr/bin/python3
-"""Defines a division function that divides all elements of a matrix"""
+"""
+This is the '2-matrix_divided' module
+
+It defines a division function
+"""
 
 
 def matrix_divided(matrix, div):
-    """Divides all elements of matrix by div, returns a new matrix"""
+    """Divides all elements of matrix by div.
+
+    Raises:
+        TypeError: if matrix is not a lists of list of integers or floats
+        TypeError: if rows in the matrix are not of same size
+        TypeError: if div is not an integer or float
+        ZeroDivisionError: if div == 0
+
+    Returns a new matrix containing the results rounded to 2 decimal places
+    """
 
     if div is None or (type(div) != int and type(div) != float):
         raise TypeError("div must be a number")
