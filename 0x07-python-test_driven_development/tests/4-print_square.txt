@@ -1,0 +1,92 @@
+Tests for ``print_square`` from 4-print_square.py
+
+-------------------------------------------------
+
+# Import function from module:
+	>>> print_square = __import__("4-print_square").print_square
+
+# Check for module docstring:
+	>>> m = __import__("4-print_square").__doc__
+	>>> len(m) >= 1
+	True
+
+# Check for function docstring:
+	>>> f = __import__("4-print_square").print_square.__doc__
+        >>> len(f) >= 1
+        True
+
+# Section - TypeError:
+	>>> print_square()
+	Traceback (most recent call last):
+	TypeError: print_square() missing 1 required positional argument: 'size'
+
+	>>> print_square(1, 2)
+        Traceback (most recent call last):
+        TypeError: print_square() takes 1 positional argument but 2 were given
+
+	>>> print_square(None)
+        Traceback (most recent call last):
+        TypeError: size must be an integer
+
+	>>> print_square("a")
+        Traceback (most recent call last):
+        TypeError: size must be an integer
+
+	>>> print_square(True)
+        Traceback (most recent call last):
+        TypeError: size must be an integer
+
+	>>> print_square(4.6)
+        Traceback (most recent call last):
+        TypeError: size must be an integer
+
+	>>> print_square(-4.6)
+        Traceback (most recent call last):
+        TypeError: size must be an integer
+
+	>>> print_square([1])
+        Traceback (most recent call last):
+        TypeError: size must be an integer
+
+	>>> print_square((1, ))
+        Traceback (most recent call last):
+        TypeError: size must be an integer
+
+	>>> print_square(*2)
+        Traceback (most recent call last):
+        TypeError: print_square() argument after * must be an iterable, not int
+
+# Section - ValueError
+	>>> print_square(-1)
+        Traceback (most recent call last):
+        ValueError: size must be >= 0
+
+# Section - SyntaxError
+	>>> print_square(*)
+        Traceback (most recent call last):
+        SyntaxError: invalid syntax
+
+	>>> print_square(2*)
+        Traceback (most recent call last):
+        SyntaxError: invalid syntax
+
+# Section - NameError
+	>>> print_square(a)
+        Traceback (most recent call last):
+        NameError: name 'a' is not defined
+
+# Section - positive ints
+	>>> print_square(0)
+
+	>>> print_square(1)
+	#
+
+	>>> print_square(2)
+	##
+	##
+
+	>>> print_square(4)
+	####
+	####
+	####
+	####
