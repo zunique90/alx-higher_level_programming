@@ -1,0 +1,121 @@
+Tests for ``text_identation`` from 5-text_identation.py
+
+-------------------------------------------------------
+
+# Import function from module:
+	>>> text_indentation = __import__("5-text_indentation").text_indentation
+
+# Check for module docstring:
+	>>> m = __import__("5-text_indentation").__doc__
+	>>> len(m) >= 1
+	True
+
+# Check for function docstring:
+	>>> f = __import__("5-text_indentation").text_indentation.__doc__
+	>>> len(f) >= 1
+	True
+
+# Section - TypeError:
+	>>> text_indentation()
+	Traceback (most recent call last):
+	TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+	>>> text_indentation("Hi", "there")
+        Traceback (most recent call last):
+        TypeError: text_indentation() takes 1 positional argument but 2 were given
+
+	>>> text_indentation(None)
+        Traceback (most recent call last):
+        TypeError: text must be a string
+
+	>>> text_indentation(1)
+        Traceback (most recent call last):
+        TypeError: text must be a string
+
+	>>> text_indentation(1.1)
+        Traceback (most recent call last):
+        TypeError: text must be a string
+
+	>>> text_indentation(True)
+        Traceback (most recent call last):
+        TypeError: text must be a string
+
+# Section - SyntaxError & NameError:
+	>>> text_indentation(*)
+        Traceback (most recent call last):
+        SyntaxError: invalid syntax
+
+	>>> text_indentation(a)
+        Traceback (most recent call last):
+        NameError: name 'a' is not defined
+
+# Section - output from strings:
+	>>> text_indentation("Hi there")
+	Hi there
+
+	>>> text_indentation("Hi. there")
+	Hi.
+	<BLANKLINE>
+	there
+
+	>>> text_indentation("Hi. there? How are you:     friend")
+	Hi.
+	<BLANKLINE>
+	there?
+	<BLANKLINE>
+	How are you:
+	<BLANKLINE>
+	friend
+
+	>>> text_indentation("          ")
+
+	>>> text_indentation("\n\n\n print 3 new lines.")
+	<BLANKLINE>
+	<BLANKLINE>
+	<BLANKLINE>
+	 print 3 new lines.
+	<BLANKLINE>
+
+	>>> text_indentation("print \n a new line.")
+	print 
+	 a new line.
+	<BLANKLINE>
+
+	>>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing "
+    	... "elit. Quonam modo? Utrum igitur tibi litteram videor an totas paginas "
+    	... "commovere? Non autem hoc: igitur ne illud quidem. Fortasse id optimum, "
+    	... "sed ubi illud: Plus semper voluptatis? Teneo, inquit, finem illi videri "
+    	... "nihil dolere. Transfer idem ad modestiam vel temperantiam, quae est "
+    	... "moderatio cupiditatum rationi oboediens. Si id dicis, vicimus. Inde "
+    	... "sermone vario sex illa a Dipylo stadia confecimus. Sin aliud quid "
+    	... "voles, postea. Quae animi affectio suum cuique tribuens atque hanc, "
+    	... "quam dico. Utinam quidem dicerent alium alio beatiorem! Iam ruinas "
+    	... "videres") # doctest: +NORMALIZE_WHITESPACE
+    	Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    	<BLANKLINE>
+    	Quonam modo?
+    	<BLANKLINE>
+    	Utrum igitur tibi litteram videor an totas paginas commovere?
+    	<BLANKLINE>
+    	Non autem hoc:
+    	<BLANKLINE>
+    	igitur ne illud quidem.
+    	<BLANKLINE>
+    	Fortasse id optimum, sed ubi illud:
+    	<BLANKLINE>
+    	Plus semper voluptatis?
+    	<BLANKLINE>
+    	Teneo, inquit, finem illi videri nihil dolere.
+    	<BLANKLINE>
+    	Transfer idem ad modestiam vel temperantiam, 
+    	quae est moderatio cupiditatum rationi oboediens.
+    	<BLANKLINE>
+    	Si id dicis, vicimus.
+    	<BLANKLINE>
+    	Inde sermone vario sex illa a Dipylo stadia confecimus.
+    	<BLANKLINE>
+    	Sin aliud quid voles, postea.
+    	<BLANKLINE>
+    	Quae animi affectio suum cuique tribuens atque hanc, quam dico.
+    	<BLANKLINE>
+    	Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres	
