@@ -5,10 +5,14 @@
 class Rectangle:
     """class Rectangle"""
 
+    number_of_instances = 0
+    print_symbol = "#"
+
     def __init__(self, width=0, height=0):
         """Instantiation with optional width and height"""
         self.width = width
         self.height = height
+        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
@@ -54,7 +58,16 @@ class Rectangle:
             return ("")
         rectangle = []
         for i in range(self.__height):
-            [rectangle.append("#") for j in range(self.__width)]
+            [rectangle.append(str(self.print_symbol)) for j in range(self.__width)]
             if i != self.__height - 1:
                 rectangle.append("\n")
         return ("".join(rectangle))
+
+    def __repr__(self):
+        """Returns a string representation of Rectangle"""
+        return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
+
+    def __del__(self):
+        """prints message for every Rectangle deleted"""
+        Rectangle.number_of_instances -= 1
+        print("Bye rectangle...")
