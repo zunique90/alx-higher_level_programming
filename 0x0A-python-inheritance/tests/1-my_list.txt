@@ -1,0 +1,21 @@
+Test for `my_list` from 1-my_list.py
+
+---------------------------------------
+
+# Import function from module:
+	>>> MyList = __import__("1-my_list").MyList
+
+# Check for module docstring:
+	>>> m = __import__("1-my_list").__doc__
+	>>> len(m) >= 1
+	True
+
+# Check for class docstring:
+	>>> c = __import__("1-my_list").MyList.__doc__
+	>>> len(c) >= 1
+	True
+
+# Check for function docstring:
+	>>> f = __import__("1-my_list").MyList.print_sorted.__doc__
+	>>> len(f) >= 1
+	True
