@@ -8,7 +8,7 @@ from collections import defaultdict
 
 def print_stats():
     """prints statistics"""
-    print("Total file size: ", total_size)
+    print("File size: ", total_size)
     for status_code in sorted(status_codes.keys()):
         print(f"{status_code}: {status_codes[status_code]}")
 
