@@ -67,3 +67,32 @@ class TestRectangle(unittest.TestCase):
     def testArea(self):
         r = Rectangle(10, 2, 3, 1)
         self.assertEqual(20, r.area())
+
+    def testArgs(self):
+        r = Rectangle(10, 10, 10, 10)
+        r.update()
+        self.assertEqual("[Rectangle] (6) 10/10 - 10/10", str(r))
+        r.update(89)
+        self.assertEqual("[Rectangle] (89) 10/10 - 10/10", str(r))
+        r.update(89, 2)
+        self.assertEqual("[Rectangle] (89) 10/10 - 2/10", str(r))
+        r.update(89, 2, 3)
+        self.assertEqual("[Rectangle] (89) 10/10 - 2/3", str(r))
+        r.update(89, 2, 3, 4)
+        self.assertEqual("[Rectangle] (89) 4/10 - 2/3", str(r))
+        r.update(89, 2, 3, 4, 5)
+        self.assertEqual("[Rectangle] (89) 4/5 - 2/3", str(r))
+
+    def testKwargs(self):
+        r = Rectangle(10, 10, 10, 10)
+        r.update(height=1)
+        self.assertEqual("[Rectangle] (7) 10/10 - 10/1", str(r))
+        r.update(width=1, x=2)
+        self.assertEqual("[Rectangle] (7) 2/10 - 1/1", str(r))
+        r.update(y=1, width=2, x=3, id=89)
+        self.assertEqual("[Rectangle] (89) 3/1 - 2/1", str(r))
+        r.update(x=1, height=2, y=3, width=4)
+        self.assertEqual("[Rectangle] (89) 1/3 - 4/2", str(r))
+
+if __name__ == "__main__":
+    unittest.main()
