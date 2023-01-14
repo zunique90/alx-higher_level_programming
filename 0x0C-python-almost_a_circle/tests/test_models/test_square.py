@@ -46,3 +46,6 @@ class TestSquare(unittest.TestCase):
         self.assertEqual("[Square] (10) 12/1 - 7", str(s))
         s.update(size=7, id=89, y=1)
         self.assertEqual("[Square] (89) 12/1 - 7", str(s))
+
+if __name__ == "__main__":
+    unittest.main()
