@@ -91,7 +91,7 @@ class Rectangle(Base):
         """return customized string repesentation of Rectangle"""
         return ("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x,
                 self.y, self.width, self.height))
-    
+
     def update(self, *args, **kwargs):
         """assigns an argument to each attribute"""
         if len(args):
@@ -117,3 +117,8 @@ class Rectangle(Base):
                 self.x = kwargs["x"]
             if "y" in kwargs:
                 self.y = kwargs["y"]
+
+    def to_dictionary(self):
+        """returns the dictionary representation of a Rectangle"""
+        return {"id": self.id, "width": self.width, "height": self.height,
+                "x": self.x, "y": self.y}
