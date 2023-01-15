@@ -4,6 +4,7 @@ This module defines the class `Base`
 """
 
 import json
+import os
 
 
 class Base:
@@ -52,3 +53,17 @@ class Base:
             new = cls(1, 1)
         new.update(**dictionary)
         return new
+
+    @classmethod
+    def load_from_file(cls):
+        """returns a list of instances"""
+        filename = cls.__name__ + ".json"
+        listDict = []
+        listInst = []
+
+        if os.path.exists(filename):
+            with open(filename, "r") as f:
+                listDict = cls.from_json_string(f.read())
+                for dicts in listDict:
+                    listInst.append(cls.create(**dicts))
+        return listInst
