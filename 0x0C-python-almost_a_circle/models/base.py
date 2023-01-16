@@ -74,8 +74,8 @@ class Base:
     def save_to_file_csv(cls, list_objs):
         """serializes a list of Rectangles/Squares in csv"""
         filename = cls.__name__ + ".csv"
-        with open(filename, mode="w", encoding="utf-8") as csvfile:
-            if lists_objs is None or list_objs == []:
+        with open(filename, "w", newline="") as csvfile:
+            if list_objs is None or list_objs == []:
                 csvfile.write("[]")
             else:
                 if cls.__name__ == "Rectangle":
@@ -89,13 +89,16 @@ class Base:
     @classmethod
     def load_from_file_csv(cls):
         """deserializes a list of Rectangles/Squares in csv"""
-        list_obj = []
         filename = cls.__name__ + ".csv"
-        with open(filename, mode="r", encoding="utf-8") as csvfile:
-            d = csv.DictReader(csvfile)
-            for row in d:
-                k = {}
-                for key, value in dict(row).items():
-                    k[key] = int(value)
-                list_obj.append(cls.create(**k))
-        return list_obj
+        try:
+            with open(filename, "r", newline="") as csvfile:
+                if cls.__name__ == "Rectangle":
+                    fields = ["id", "width", "height", "x", "y"]
+                else:
+                    fields = ["id", "size", "x", "y"]
+                list_dicts = csv.DictReader(csvfile, fieldnames=fields)
+                list_dicts = [dict([k, int(v)] for k, v in d.items())
+                              for d in list_dicts]
+                return [cls.create(**d) for d in list_dicts]
+        except IOError:
+            return []
