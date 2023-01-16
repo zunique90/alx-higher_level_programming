@@ -5,6 +5,7 @@ This module defines the class `Base`
 
 import json
 import os
+import csv
 
 
 class Base:
@@ -68,3 +69,30 @@ class Base:
                 for dicts in listDict:
                     listInst.append(cls.create(**dicts))
         return listInst
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """serializes a list of Rectangles/Squares in csv"""
+        filename = cls.__name__ + ".csv"
+        with open(filename, "w", newline="") as csvfile:
+            csv_wrt = csv.writer(csvfile)
+            if cls.__name__ == "Rectangle":
+                for o in list_objs:
+                    csv_wrt.writerow([o.id, o.width, o.height, o.x, o.y])
+            elif cls.__name__ == "Square":
+                for o in list_objs:
+                    csv_wrt.writerow([o.id, o.size, o.height, o.x, o.y])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """deserializes a list of Rectangles/Squares in csv"""
+        list_obj = []
+        filename = cls.__name__ + ".csv"
+        with open(filename, "r") as csvfile:
+            d = csv.DictReader(csvfile)
+            for row in d:
+                k = {}
+                for key, value in dict(row).items():
+                    k[key] = int(value)
+                list_obj.append(cls.create(**k))
+        return list_obj
