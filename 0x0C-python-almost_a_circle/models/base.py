@@ -75,13 +75,16 @@ class Base:
         """serializes a list of Rectangles/Squares in csv"""
         filename = cls.__name__ + ".csv"
         with open(filename, "w", newline="") as csvfile:
-            csv_wrt = csv.writer(csvfile)
-            if cls.__name__ == "Rectangle":
-                for o in list_objs:
-                    csv_wrt.writerow([o.id, o.width, o.height, o.x, o.y])
-            elif cls.__name__ == "Square":
-                for o in list_objs:
-                    csv_wrt.writerow([o.id, o.size, o.height, o.x, o.y])
+            if lists_objs is None or list_objs == []:
+                csvfile.write("[]")
+            else:
+                csv_wrt = csv.writer(csvfile)
+                if cls.__name__ == "Rectangle":
+                    for o in list_objs:
+                        csv_wrt.writerow([o.id, o.width, o.height, o.x, o.y])
+                else:
+                    for o in list_objs:
+                        csv_wrt.writerow([o.id, o.size, o.height, o.x, o.y])
 
     @classmethod
     def load_from_file_csv(cls):
