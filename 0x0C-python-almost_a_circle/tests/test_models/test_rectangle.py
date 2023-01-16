@@ -99,7 +99,7 @@ class TestRectangle(unittest.TestCase):
     def testArgs(self):
         r = Rectangle(10, 10, 10, 10)
         r.update()
-        self.assertEqual("[Rectangle] (6) 10/10 - 10/10", str(r))
+        self.assertEqual("[Rectangle] (10) 10/10 - 10/10", str(r))
         r.update(89)
         self.assertEqual("[Rectangle] (89) 10/10 - 10/10", str(r))
         r.update(89, 2)
@@ -135,9 +135,9 @@ class TestRectangle(unittest.TestCase):
     def testKwargs(self):
         r = Rectangle(10, 10, 10, 10)
         r.update(height=1)
-        self.assertEqual("[Rectangle] (7) 10/10 - 10/1", str(r))
+        self.assertEqual("[Rectangle] (11) 10/10 - 10/1", str(r))
         r.update(width=1, x=2)
-        self.assertEqual("[Rectangle] (7) 2/10 - 1/1", str(r))
+        self.assertEqual("[Rectangle] (11) 2/10 - 1/1", str(r))
         r.update(y=1, width=2, x=3, id=89)
         self.assertEqual("[Rectangle] (89) 3/1 - 2/1", str(r))
         r.update(x=1, height=2, y=3, width=4)

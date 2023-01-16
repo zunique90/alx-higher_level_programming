@@ -59,9 +59,9 @@ class TestSquare(unittest.TestCase):
     def testKwargs(self):
         s = Square(5)
         s.update(x=12)
-        self.assertEqual("[Square] (10) 12/0 - 5", str(s))
+        self.assertEqual("[Square] (14) 12/0 - 5", str(s))
         s.update(size=7, y=1)
-        self.assertEqual("[Square] (10) 12/1 - 7", str(s))
+        self.assertEqual("[Square] (14) 12/1 - 7", str(s))
         s.update(size=7, id=89, y=1)
         self.assertEqual("[Square] (89) 12/1 - 7", str(s))
 
