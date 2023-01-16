@@ -74,7 +74,7 @@ class Base:
     def save_to_file_csv(cls, list_objs):
         """serializes a list of Rectangles/Squares in csv"""
         filename = cls.__name__ + ".csv"
-        with open(filename, "w", newline="") as csvfile:
+        with open(filename, "w", encoding="utf-8") as csvfile:
             if lists_objs is None or list_objs == []:
                 csvfile.write("[]")
             else:
@@ -91,7 +91,7 @@ class Base:
         """deserializes a list of Rectangles/Squares in csv"""
         list_obj = []
         filename = cls.__name__ + ".csv"
-        with open(filename, "r") as csvfile:
+        with open(filename, "r", encoding="utf-8") as csvfile:
             d = csv.DictReader(csvfile)
             for row in d:
                 k = {}
