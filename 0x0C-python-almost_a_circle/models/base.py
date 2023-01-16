@@ -78,13 +78,13 @@ class Base:
             if lists_objs is None or list_objs == []:
                 csvfile.write("[]")
             else:
-                csv_wrt = csv.writer(csvfile)
                 if cls.__name__ == "Rectangle":
-                    for o in list_objs:
-                        csv_wrt.writerow([o.id, o.width, o.height, o.x, o.y])
-                elif cls.__name__ == "Square":
-                    for o in list_objs:
-                        csv_wrt.writerow([o.id, o.size, o.height, o.x, o.y])
+                    fields = ["id", "width", "height", "x", "y"]
+                else:
+                    fields = ["id", "size", "x", "y"]
+                csv_d_wrt = csv.DictWriter(csvfile, fieldnames=fields)
+                for o in list_objs:
+                    csv_d_wrt.writerow(o.to_dictionary())
 
     @classmethod
     def load_from_file_csv(cls):
