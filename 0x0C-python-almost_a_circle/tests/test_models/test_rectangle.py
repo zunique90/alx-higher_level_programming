@@ -3,6 +3,8 @@
 unittest for rectangle.py
 """
 
+import sys
+import io
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
@@ -68,6 +70,32 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(10, 2, 3, 1)
         self.assertEqual(20, r.area())
 
+    def testStr(self):
+        r = Rectangle(10, 10, 10, 10, 1)
+        self.assertEqual("[Rectangle] (1) 10/10 - 10/10", str(r))
+
+    @staticmethod
+    def capture_stdout(rect, method):
+        """captures and returns output printed to stdout"""
+        capture = io.StringIO()
+        sys.stdout = capture
+        if method == "print":
+            print(rect)
+        else:
+            rect.display()
+        sys.stdout = sys.__stdout__
+        return capture
+
+    def testDisplay(self):
+        r = Rectangle(2, 3, 0, 0, 0)
+        disp = self.capture_stdout(r, "display")
+        self.assertEqual("##\n##\n##\n", disp.getvalue())
+
+    def testDisplayxy(self):
+        r = Rectangle(2, 4, 3, 2, 0)
+        disp = self.capture_stdout(r, "display")
+        self.assertEqual("\n\n   ##\n   ##\n   ##\n   ##\n", disp.getvalue())
+
     def testArgs(self):
         r = Rectangle(10, 10, 10, 10)
         r.update()
@@ -82,6 +110,27 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual("[Rectangle] (89) 4/10 - 2/3", str(r))
         r.update(89, 2, 3, 4, 5)
         self.assertEqual("[Rectangle] (89) 4/5 - 2/3", str(r))
+
+    def test_arg_order_width(self):
+        r = Rectangle(10, 10, 10, 10, 10)
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            r.update(1, "2", "3")
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            r.update(1, "2", 3, "4")
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            r.update(1, "2", 3, 4, "5")
+
+    def test_arg_order_height(self):
+        r = Rectangle(10, 10, 10, 10, 10)
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+            r.update(1, 2, "3", "4")
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+            r.update(1, 2, "3", 4, "5")
+
+    def test_arg_order_x(self):
+        r = Rectangle(10, 10, 10, 10, 10)
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            r.update(1, 2, 3, "4", "5")
 
     def testKwargs(self):
         r = Rectangle(10, 10, 10, 10)
