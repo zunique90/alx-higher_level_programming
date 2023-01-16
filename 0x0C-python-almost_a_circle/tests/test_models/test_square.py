@@ -27,9 +27,15 @@ class TestSquare(unittest.TestCase):
         s.size = 6
         self.assertEqual(6, s.size)
 
+    def testStr(self):
+        r = Square(10, 10, 10, 10)
+        self.assertEqual("[Square] (10) 10/10 - 10", str(r))
+
     def testAttr(self):
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Square("10")
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            Square(-1)
 
     def testArgs(self):
         s = Square(5)
@@ -37,6 +43,18 @@ class TestSquare(unittest.TestCase):
         self.assertEqual("[Square] (1) 3/0 - 2", str(s))
         s.update(1, 2, 3, 4)
         self.assertEqual("[Square] (1) 3/4 - 2", str(s))
+
+    def test_arg_order_size(self):
+        s = Square(10, 10, 10, 10)
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            s.update(1, "2", "3")
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            s.update(1, "2", 3, "4")
+
+    def test_arg_order_x(self):
+        s = Square(10, 10, 10, 10)
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            s.update(1, 2, "3", "4")
 
     def testKwargs(self):
         s = Square(5)
