@@ -152,6 +152,11 @@ class TestRectangle(unittest.TestCase):
         d = {'x': 1, 'y': 9, 'id': 1, 'height': 2, 'width': 10}
         self.assertDictEqual(d, r.to_dictionary())
 
+    def test_save_to_file(self):
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual("[]", f.read())
+
 
 if __name__ == "__main__":
     unittest.main()
