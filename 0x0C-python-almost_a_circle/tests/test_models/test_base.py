@@ -34,7 +34,6 @@ class TestBase(unittest.TestCase):
         s = Square(10, 2, 3, 4)
         self.assertEqual(str, type(Base.to_json_string([s.to_dictionary()])))
 
-
     @classmethod
     def tearDown(self):
         """Delete any created files."""
@@ -63,6 +62,10 @@ class TestBase(unittest.TestCase):
             self.assertTrue(len(f.read()) == 39)
 
         Rectangle.save_to_file(None)
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual("[]", f.read())
+
+        Rectangle.save_to_file([])
         with open("Rectangle.json", "r") as f:
             self.assertEqual("[]", f.read())
 
