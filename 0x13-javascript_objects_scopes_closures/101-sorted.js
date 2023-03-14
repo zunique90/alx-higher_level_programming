@@ -7,4 +7,4 @@ for (const key in dict1) {
   }
   res[dict1[key]].push(key);
 }
-console.log(result);
+console.log(res);
