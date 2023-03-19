@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
-This script lists all State objects, and corresponding City objects,
-contained in the database hbtn_0e_101_usa
+This script creates lists all City objects from the database hbtn_0e_101_usa
 """
 
 from sys import argv
@@ -19,7 +18,5 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    for state in session.query(State).order_by(State.id):
-        print("{}: {}".format(state.id, state.name))
-        for city in state.cities:
-            print("\t{}: {}".format(city.id, city.name))
+    for city in session.query(City).order_by(City.id):
+        print("{}: {} -> {}".format(city.id, city.name, city.state.name))
