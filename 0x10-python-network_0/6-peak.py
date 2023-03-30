@@ -13,5 +13,5 @@ def find_peak(list_of_integers):
                 if (list_of_integers[i] >= list_of_integers[i - 1] and
                    list_of_integers[i] >= list_of_integers[i + 1]):
                     return list_of_integers[i]
-            except:
+            except Exception:
                 return list_of_integers[len(list_of_integers)]
