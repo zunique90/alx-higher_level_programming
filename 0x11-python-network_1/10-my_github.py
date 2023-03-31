@@ -9,7 +9,7 @@ import requests as r
 from requests.auth import HTTPBasicAuth
 
 
-if __name__ =="__main__":
+if __name__ == "__main__":
     userAuth = HTTPBasicAuth(argv[1], argv[2])
     response = r.get("https://api.github.com/user", auth=userAuth)
     userId = response.json()
