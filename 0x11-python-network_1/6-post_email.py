@@ -5,7 +5,7 @@ as a parameter, and finally displays the body of the response.
 """
 
 from sys import argv
-import request
+import requests
 
 
 if __name__ == "__main__":
